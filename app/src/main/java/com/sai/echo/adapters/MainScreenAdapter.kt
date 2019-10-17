@@ -23,12 +23,11 @@ class MainScreenAdapter(_songDetails: ArrayList<Songs>, _context: Context) : Rec
 
     }
 
-    /*Local variables used for storing the data sent from the fragment to be used in the adapter
-    * These variables are initially null*/
+
     var songDetails: ArrayList<Songs>? = null
     var mContext: Context? = null
 
-    /*In the init block we assign the data received from the params to our local variables*/
+
     init {
         this.songDetails = _songDetails
         this.mContext = _context
@@ -36,13 +35,11 @@ class MainScreenAdapter(_songDetails: ArrayList<Songs>, _context: Context) : Rec
     override fun onBindViewHolder(holder: MyViewHolder, position: Int) {
         val songObject = songDetails?.get(position)
 
-        /*The holder object of our MyViewHolder class has two properties i.e
-        * trackTitle for holding the name of the song and
-        * trackArtist for holding the name of the artist*/
+
         holder.trackTitle?.text = songObject?.songTitle
         holder.trackArtist?.text = songObject?.artist
 
-        /*Handling the click event i.e. the action which happens when we click on any song*/
+
         holder.contentHolder?.setOnClickListener({
             val songPlayingFragment = SongPlayingFragment()
             var args = Bundle()

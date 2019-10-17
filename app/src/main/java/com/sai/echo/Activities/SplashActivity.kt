@@ -22,29 +22,19 @@ class SplashActivity : AppCompatActivity() {
         setContentView(R.layout.activity_splash)
 
         if (!hasPermissions(this@SplashActivity, *permissionString)) {
-            /*Now wkhen the permissions were not granted, we want our application to ask for permissions. This is done with the help of
-            * the lines of code written below*/
-            ActivityCompat.requestPermissions(this@SplashActivity, permissionString, 131)/*We request the user for permissions by
-                                                                                                            passing the array of permissions.
-                                                                                                            The request code is the unique number,
-                                                                                                            with which the Android OS will identify
-                                                                                                            which request was fired. We used 131,
-                                                                                                            you can use any other distinct number*/
+
+            ActivityCompat.requestPermissions(this@SplashActivity, permissionString, 131)
         } else {
-            /*Let's understand this in an easy way. The handler is used to handle the tasks i.e. it is used to delay the tasks which need to be
-            * performed. Here we are delaying the opening of the next activity by 1000ms (1 sec) in order to make the welcome/splash screen visible
-            * to the user and give our app a nice user experience(known as the UX)*/
+
             Handler().postDelayed({
                 val startAct = Intent(this@SplashActivity, MainActivity::class.java)/*As we already know this is used to define the
                                                                                                   path of navigation from one activity to another*/
-                startActivity(startAct) /*This statement is used to launch the new activity*/
+                startActivity(startAct)
                 this.finish() /*Now, this statement is used to finish the current activity when the user moves on to the next activity.
                                 This prevents the user to view the splash again by pressing back button, which won't be a good UX*/
             }, 1000)
         }
     }
-    /*This is the method called when the user has completed the actions to be taken when the permissions were asked for. Now, its time to check the
-    * result of the permissions request. This was eatlier not present till the android version 6.0.0(Marshmallow) or API 23*/
 
 
 

@@ -16,9 +16,7 @@ class EchoDatabase(context: Context?, name: String?, factory: SQLiteDatabase.Cur
     var _songList = ArrayList<Songs>()
 
     object Statified {
-        /*Let's define some params for our database
-    * All the below params are case-sensitive and should be used with the same case*/
-        /*Database Name*/
+
         val DB_NAME = "FavouriteDatabase"
 
         /*Name of the table*/
@@ -59,25 +57,22 @@ class EchoDatabase(context: Context?, name: String?, factory: SQLiteDatabase.Cur
         db.close()
     }
 
-    /*This method asks the database for the list of Songs stored as favorite*/
+
     fun queryDBList(): ArrayList<Songs>? {
 
-        /*Here a try-catch block is used to handle the exception as no songs in the database can result in null-pointer exception*/
+
 
         try {
             val db = this.readableDatabase
 
-            /*The SQL query used for obtaining the songs is :
-            * SELECT * FROM FavoriteTable
-            * The query returns all the items present in the table*/
+
             val query_params = "SELECT * FROM " + TABLE_NAME
             var cSor = db.rawQuery(query_params, null)
 
-            /*The cSor stores the result obtained from the database
-            * The function moveToFirst() checks if there are any entries or not*/
+
             if (cSor.moveToFirst()) {
 
-                /*If 1 or more rows are returned then we store all the entries into the array list _songList*/
+
                 do {
 
                     var _id = cSor.getInt(cSor.getColumnIndexOrThrow(COLUMN_ID))
@@ -109,13 +104,11 @@ class EchoDatabase(context: Context?, name: String?, factory: SQLiteDatabase.Cur
     /*This function is created for checking whether a particular song is a favorite or not*/
     fun checkifIdExists(_id: Int): Boolean {
 
-        /*Random id which does not exist
-        * We know that this id can never exist as the song id cannot be less than 0*/
+
         var storeId = -1090
         val db = this.readableDatabase
 
-        /*The query for checking the if id is present or not is
-        * SELECT * FROM FavoriteTable WHERE SongID = <id_of_our_song>*/
+
         val query_params = "SELECT * FROM " + TABLE_NAME + " WHERE SongID = '$_id'"
         val cSor = db.rawQuery(query_params, null)
         if (cSor.moveToFirst()) {
@@ -128,20 +121,18 @@ class EchoDatabase(context: Context?, name: String?, factory: SQLiteDatabase.Cur
             return false
         }
 
-        /*Here we need to return a boolean value i.e. true or false
-        * Hence we check if the store id is not equal to -1090 then we return true, else we return false*/
+
         return storeId != -1090
     }
 
-    /*This function is used to delete the songs from the favorite if the user the user removes any song from the favorite list*/
+
     fun deleteFavourite(_id: Int) {
         val db = this.writableDatabase
 
         /*The delete query is used to perform the delete function*/
         db.delete(TABLE_NAME, COLUMN_ID + " = " + _id, null)
 
-        /*Here is also we close the database connection
-        * Note that we only close the database whenever we open in writable mode*/
+
         db.close()
     }
 
@@ -161,7 +152,7 @@ class EchoDatabase(context: Context?, name: String?, factory: SQLiteDatabase.Cur
             return 0
         }
 
-        /*returning the counter will return the number of elements in the database*/
+
         return counter
     }
 

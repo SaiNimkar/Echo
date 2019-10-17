@@ -21,8 +21,7 @@ class FavouriteAdapter(_songDetails: ArrayList<Songs>, _context: Context) : Recy
 
     }
 
-    /*Local variables used for storing the data sent from the fragment to be used in the adapter
-    * These variables are initially null*/
+
     var songDetails: ArrayList<Songs>? = null
     var mContext: Context? = null
 
@@ -44,17 +43,13 @@ class FavouriteAdapter(_songDetails: ArrayList<Songs>, _context: Context) : Recy
         /*Handling the click event i.e. the action which happens when we click on any song*/
         holder.contentHolder?.setOnClickListener({
 
-            /*Let's discuss this peice of code*/
-            /*Firstly we define an object of the SongPlayingFragment*/
+
             val songPlayingFragment = SongPlayingFragment()
 
             /*A bundle is used to transfer data from one point in your activity to another
             * Here we create an object of Bundle to send the sond details to the fragment so that we can display the song details there and also play the song*/
             var args = Bundle()
 
-            /*putString() function is used for adding a string to the bundle object
-            * the string written in green is the name of the string which is placed in the bundle object with the value of that string written alongside
-            * Note: Remember the name of the strings/entities you place inside the bundle object as you will retrieve them later using the same name. And these names are case-sensitive*/
             args.putString("songArtist", songObject?.artist)
             args.putString("songTitle", songObject?.songTitle)
             args.putString("path", songObject?.songData)
@@ -79,19 +74,18 @@ class FavouriteAdapter(_songDetails: ArrayList<Songs>, _context: Context) : Recy
 
     override fun getItemCount(): Int {
 
-        /*If the array list for the songs is null i.e. there are no songs in your device
-        * then we return 0 and no songs are displayed*/
+
         if (songDetails == null) {
             return 0
         }
 
-        /*Else we return the total size of the song details which will be the total number of song details*/
+
         else {
             return (songDetails as ArrayList<Songs>).size
         }
     }
 
-    /*Every view holder class we create will serve the same purpose as it did when we created it for the navigation drawer*/
+
     class MyViewHolder(view: View) : RecyclerView.ViewHolder(view) {
 
         /*Declaring the widgets and the layout used*/

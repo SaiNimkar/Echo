@@ -21,15 +21,13 @@ class SettingsFragment : Fragment() {
     /*Declaring the switch used*/
     var shakeSwitch: Switch? = null
 
-    /*Here the change in switch will lead to turning on and off of a setting so we need to persist the changes
-    * This will be done with the help of Shared preferences*/
+
     object Statified {
         var MY_PREFS_NAME = "ShakeFeature"
     }
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
-        // Inflate the layout for this fragment
-        // Inflate the layout for this fragment
+
         val view = inflater!!.inflate(R.layout.fragment_settings, container, false)
         activity?.title = "Settings"
 

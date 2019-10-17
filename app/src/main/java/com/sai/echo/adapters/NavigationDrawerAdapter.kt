@@ -20,12 +20,9 @@ class NavigationDrawerAdapter(_contentList: ArrayList<String>, _getImages: IntAr
     : RecyclerView.Adapter<NavigationDrawerAdapter.NavViewHolder>() {
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): NavViewHolder {
 
-        /*Here we inflate our view taking the context from the parent. The inflate() function takes the resource(R.layout.row_custom_navigationdrawer)
-        * sets it to the parent and does not attach this to the root. You can skip the details of this as of now*/
+
         val itemView = LayoutInflater.from(parent?.context).inflate(R.layout.row_custom_navigationdrawer, parent, false)
 
-        /*Here we pass this view into the holder and return that and our view is created. The below tow lines can be reduced as
-        * return NavViewHolder(itemView)*/
         val returnThis = NavViewHolder(itemView)
         return returnThis
 
@@ -73,9 +70,7 @@ class NavigationDrawerAdapter(_contentList: ArrayList<String>, _getImages: IntAr
                         .commit()
             }
 
-            /*As we tap on any item we want our drawer to close automatically as the fragment loads. The function closeDrawers() is used for doing the same
-            * Note here that we have used the drawer layout in the exact similar way we did in our MainActivity as MainActivity.Statified.drawerLayout.
-            * This is because we created an object of it and hence it can be used in a similar way anywhere in our project*/
+
             MainActivity.Statified.drawerLayout?.closeDrawers()
         })
     }
@@ -92,21 +87,12 @@ class NavigationDrawerAdapter(_contentList: ArrayList<String>, _getImages: IntAr
         this.mContext = _context
     }
 
-    /*The onBindViewHolder() method is used to display the data at the specified position.
-    * The params i.e. holder and position are used to set the data and the position of that data within the recycler view*/
-
-
-    /*This function is used to create the view for the single row of the recycler view. We inflate the view used for single row inside this method.
-    * Let's discuss the params of this method:
-    * i) parent: ViewGroup? ->  The view group is the base class for layouts and views containers. Here the parent is the view group into which the new view will be added
-    * ii) viewType: Int -> The type of the view to be inflated*/
 
 
 
-    /*This function returns the number elements present in our recycler view. The number of these items can be calculated by the number of items in our arraylist(contentList)*/
-    override fun getItemCount(): Int {
+       override fun getItemCount(): Int {
 
-        /*Here we return the size of the list we used.*/
+
         return (contentList as ArrayList).size
     }
 
